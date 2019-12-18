@@ -1,0 +1,81 @@
+Terminals:
+    Identifier
+    ( )
+    { }
+    [ ]
+    ..
+    ,
+    ||
+    &&
+    +
+    -
+    *
+    /
+    ;
+    if
+    else
+    for
+    while
+    ret
+
+Function -> Identifier Identifier ( ParameterList ) Scope
+
+ParameterList -> ParameterList , Parameter
+ParameterList -> Parameter
+ParameterList -> %empty
+
+// type name
+Parameter -> Identifier Identifier
+
+StatementList -> StatementList Statement
+StatementList -> Statement
+
+Statement -> Declaration
+Statement -> Expression
+Statement -> If
+Statement -> For
+Statement -> While
+Statement -> Scope
+Statement -> Ret
+
+Declaration -> Identifier Identifier ;
+Declaration -> Identifier Identifier = Expression ;
+
+Expression -> Expression || And
+Expression -> And
+
+And -> And && Equality
+And -> Equality
+
+Equality -> Equality == Sum
+Equality -> Equality != Sum
+Equality -> Sum
+
+Sum -> Sum + Product
+Sum -> Sum - Product
+Sum -> Product
+
+Product -> Product * Call
+Product -> Product / Call
+Product -> Call
+
+Call -> Call ( ArgumentList )
+Call -> Term
+
+Term -> Identifier
+Term -> Number
+Term -> ( Expression )
+
+ArgumentList -> ArgumentList Expresion
+ArgumentList -> Expresion
+
+If -> if ( Expresion ) Statement
+If -> if ( Expresion ) Statement else Statement
+
+For -> for Identifier in [ Expresion .. Expresion ] Statement
+
+While -> while ( Expresion ) Statement
+
+Scope-> { StatementList }
+
+Ret -> ret Expression
