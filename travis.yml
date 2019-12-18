@@ -1,0 +1,16 @@
+dist: trusty
+sudo: false
+language: cpp
+
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-8.0
+        packages:
+            - nasm
+            - clang-8.0
+            - llvm-8.0-dev
+
+script:
+    - make
